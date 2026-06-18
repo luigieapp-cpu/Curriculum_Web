@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Mi Currículum Web{% endblock %}
+
+{% block content %}
+    {% if show_login %}
+        <main class="auth-shell">
+            <section class="auth-card panel">
+                <div class="auth-copy">
+                    <p class="section-kicker">Acceso al sistema</p>
+                    <h2>Iniciar sesión</h2>
+                    <p class="section-text">Usa tu usuario de Django para administrar el contenido del currículum desde la base de datos.</p>
+                </div>
+
+                <form method="post" action="{% url 'login' %}" class="auth-form">
+                    {% csrf_token %}
+                    {% if login_form.non_field_errors %}
+                        <div class="form-errors">{{ login_form.non_field_errors }}</div>
+                    {% endif %}
+
+                    <label for="{{ login_form.email.id_for_label }}">Email</label>
+                    {{ login_form.email }}
+                    {% for error in login_form.email.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+
+                    <label for="{{ login_form.password.id_for_label }}">Contraseña</label>
+                    {{ login_form.password }}
+                    {% for error in login_form.password.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+
+                    <button type="submit" class="btn-primary">Entrar</button>
+                </form>
+            </section>
+
+            <aside class="auth-note panel">
+                <p class="section-kicker">Backend Django + XAMPP</p>
+                <h2>CRUD funcional</h2>
+                <p class="section-text">El contenido del currículum se administra con Django y puede conectarse a MySQL en XAMPP mediante la configuración de base de datos del proyecto.</p>
+                <ul class="feature-list">
+                    <li>Autenticación server-side</li>
+                    <li>CRUD para las entradas del CV</li>
+                    <li>Fallback con contenido por defecto si la base está vacía</li>
+                </ul>
+            </aside>
+        </main>
+    {% else %}
+        <main class="dashboard-shell">
+            <section class="hero panel">
+                <p class="section-kicker">Resumen ejecutivo</p>
+                <h2>Currículum centralizado en Django</h2>
+                <p class="section-text">Las secciones originales del currículum ahora se generan desde Python, y el CRUD permite modificar el contenido sin tocar el front-end.</p>
+            </section>
+
+            {% for section in sections %}
+                <section id="{{ section.anchor }}" class="content-section panel">
+                    <div class="section-header">
+                        <div>
+                            <p class="section-kicker">Sección</p>
+                            <h2>{{ section.title }}</h2>
+                        </div>
+                        {% if user.is_authenticated and section.anchor == 'contacto' %}
+                            <a class="btn-secondary" href="{% url 'curriculum:entry_list' %}">Administrar datos</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="section-grid">
+                        {% for item in section.items %}
+                            <article class="content-card">
+                                <h3>{{ item.title }}</h3>
+                                {% if item.subtitle %}
+                                    <p class="meta">{{ item.subtitle }}</p>
+                                {% endif %}
+                                {% if item.description %}
+                                    <p>{{ item.description }}</p>
+                                {% endif %}
+                                {% if item.link_url %}
+                                    <a href="{{ item.link_url }}" target="_blank" rel="noopener noreferrer" class="inline-link">
+                                        {{ item.link_label|default:"Ver enlace" }}
+                                    </a>
+                                {% endif %}
+                            </article>
+                        {% empty %}
+                            <p class="empty-state">No hay elementos registrados para esta sección.</p>
+                        {% endfor %}
+                    </div>
+                </section>
+            {% endfor %}
+        </main>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,541 @@
+/* RESET CSS: asegura consistencia entre navegadores */
+*{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+    }
+
+    /* Estilo general del cuerpo */
+    body {
+            font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(102, 126, 234, 0.15), transparent 35%),
+                linear-gradient(180deg, #f6f8fc 0%, #e9eef6 100%);
+            color: #1f2937;
+            font-size: 18px;
+            font-weight: normal;
+            line-height: 1.6;
+            min-height: 100vh;
+    }
+
+    a {
+        color: inherit;
+    }
+
+    .app-shell {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 24px 0 48px;
+    }
+
+    .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        padding: 24px 28px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+        color: #f9fafb;
+        box-shadow: 0 18px 50px rgba(15, 23, 42, 0.18);
+        margin-bottom: 24px;
+    }
+
+    .brand-block h1,
+    .hero h2,
+    .auth-card h2,
+    .auth-note h2,
+    .content-section h2,
+    .form-panel h2 {
+        border-bottom: none;
+    }
+
+    .eyebrow,
+    .section-kicker {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.74rem;
+        font-weight: 700;
+        color: #93c5fd;
+        margin-bottom: 8px;
+    }
+
+    .topnav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .topnav a {
+        color: #f9fafb;
+        text-decoration: none;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .topnav a:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.16);
+    }
+
+    .messages {
+        margin-bottom: 20px;
+        display: grid;
+        gap: 10px;
+    }
+
+    .message {
+        padding: 14px 16px;
+        border-radius: 16px;
+        background: #eff6ff;
+        color: #1d4ed8;
+        border: 1px solid #bfdbfe;
+    }
+
+    .message-success {
+        background: #ecfdf5;
+        color: #065f46;
+        border-color: #a7f3d0;
+    }
+
+    .message-info {
+        background: #eff6ff;
+        color: #1d4ed8;
+        border-color: #bfdbfe;
+    }
+
+    .panel {
+        background: rgba(255, 255, 255, 0.84);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 24px;
+        box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+        padding: 28px;
+    }
+
+    .section-text,
+    .meta,
+    .empty-state {
+        color: #475569;
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-danger,
+    .btn-logout {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        border: none;
+        border-radius: 14px;
+        padding: 12px 18px;
+        font-weight: 700;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+        color: #fff;
+        box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-secondary {
+        background: #e2e8f0;
+        color: #0f172a;
+    }
+
+    .btn-danger,
+    .btn-logout {
+        background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+        color: #fff;
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-danger:hover,
+    .btn-logout:hover {
+        transform: translateY(-1px);
+    }
+
+    .auth-shell,
+    .dashboard-shell,
+    .crud-shell,
+    .form-shell {
+        display: grid;
+        gap: 24px;
+    }
+
+    .auth-shell {
+        grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+        align-items: start;
+    }
+
+    .auth-card {
+        display: grid;
+        gap: 24px;
+    }
+
+    .auth-form,
+    .form-grid,
+    .toolbar {
+        display: grid;
+        gap: 16px;
+    }
+
+    .auth-form label,
+    .field-group label,
+    .toolbar label {
+        font-weight: 700;
+        color: #334155;
+    }
+
+    .input-field {
+        width: 100%;
+        border: 1px solid #cbd5e1;
+        border-radius: 14px;
+        padding: 12px 14px;
+        background: #fff;
+        color: #0f172a;
+        font: inherit;
+    }
+
+    .input-field:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+    }
+
+    .field-error,
+    .form-errors {
+        color: #b91c1c;
+        font-size: 0.92rem;
+    }
+
+    .feature-list {
+        padding-left: 20px;
+        display: grid;
+        gap: 10px;
+        color: #334155;
+    }
+
+    .dashboard-shell {
+        gap: 20px;
+    }
+
+    .hero {
+        display: grid;
+        gap: 10px;
+    }
+
+    .content-section {
+        display: grid;
+        gap: 20px;
+    }
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+
+    .section-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+    }
+
+    .content-card {
+        background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+        border: 1px solid #dbe4f0;
+        border-radius: 20px;
+        padding: 20px;
+        display: grid;
+        gap: 8px;
+        min-height: 100%;
+    }
+
+    .content-card h3 {
+        color: #0f172a;
+    }
+
+    .inline-link {
+        color: #1d4ed8;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .inline-link:hover {
+        text-decoration: underline;
+    }
+
+    .crud-table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 16px;
+        background: #fff;
+    }
+
+    .crud-table th,
+    .crud-table td {
+        padding: 14px 12px;
+        text-align: left;
+        border-bottom: 1px solid #e2e8f0;
+        vertical-align: top;
+    }
+
+    .crud-table thead th {
+        background: #0f172a;
+        color: #fff;
+    }
+
+    .crud-table tbody tr:hover {
+        background: #f8fafc;
+    }
+
+    .actions-cell {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .actions-cell a {
+        color: #1d4ed8;
+        font-weight: 700;
+        text-decoration: none;
+    }
+
+    .actions-cell a:hover {
+        text-decoration: underline;
+    }
+
+    .table-wrap {
+        overflow-x: auto;
+    }
+
+    .field-group {
+        display: grid;
+        gap: 8px;
+    }
+
+    .field-group-inline {
+        grid-template-columns: auto 1fr;
+        align-items: center;
+    }
+
+    .checkbox-field {
+        width: 18px;
+        height: 18px;
+        accent-color: #2563eb;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #e2e8f0;
+        color: #334155;
+        font-size: 0.82rem;
+        font-weight: 700;
+    }
+
+    .badge-success {
+        background: #dcfce7;
+        color: #166534;
+    }
+
+    @media (max-width: 860px) {
+        .topbar,
+        .auth-shell {
+            grid-template-columns: 1fr;
+            display: grid;
+        }
+
+        .topbar {
+            justify-content: start;
+        }
+
+        .topnav {
+            justify-content: start;
+        }
+
+        .section-header {
+            align-items: start;
+        }
+    }
+
+    /* Ocultar elementos */
+    .hidden {
+        display: none !important;
+    }
+
+    /* ============================================
+       ESTILOS DEL LOGIN
+    ============================================ */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .login-form {
+        background: #fff;
+        padding: 40px;
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .login-form h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #2c3e50;
+        border-bottom: none;
+    }
+
+    .login-form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #555;
+    }
+
+    .login-form input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+    }
+
+    .login-form input:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+
+    .login-form button {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .login-form button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.95em;
+    }
+
+    .register-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .error {
+        color: #e74c3c;
+        text-align: center;
+        margin-top: 10px;
+        font-size: 0.9em;
+    }
+
+    /* ============================================
+       ESTILOS DEL DASHBOARD / CURRICULUM
+    ============================================ */
+
+    /* Encabezado */
+    header {
+                background-color: #2c3e50;
+                color: white;
+                padding: 20px;
+                text-align: center;
+    }
+
+    header a {
+                color: #f4f4f9; /* Enlaces en blanco */
+                text-decoration: none;
+                font-weight: bold;
+                margin: 0 15px;
+                transition: color 0.3s;
+    }
+
+    header a:hover {
+                color: #667eea;
+    }
+
+    .btn-logout {
+        background: #e74c3c;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-left: 15px;
+        font-size: 0.9em;
+        transition: background 0.3s;
+    }
+
+    .btn-logout:hover {
+        background: #c0392b;
+    }
+
+
+    /* Secciones */
+    section {
+                padding: 20px;
+                max-width: 900px;
+                margin: auto;
+    }
+
+    h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+    }
+
+    /* Lista de Educación */
+    .info {
+            font-weight: bold; /* Negrita para destacar */
+            list-style: none;
+            padding: 0;
+    }
+
+    .info li {
+                margin: 5px 0;
+    }
+
+    /* Experiencia Laboral */
+    .job {
+            margin-bottom: 20px;
+            padding: 10px;
+            background: #eaf2f8; /* Fondo suave */
+            border-left: 4px solid #2c3e50; /* Línea lateral azul */
+            border-right: 4px solid #2c3e50; /* Línea lateral azul */
+            border-radius: 5px; /* Bordes redondeados */
+        }

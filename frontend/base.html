@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mi Currículum Web{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div class="brand-block">
+                <p class="eyebrow">CURRICULUM WEB V2</p>
+                <h1>Mi Currículum Web</h1>
+            </div>
+            <nav class="topnav">
+                <a href="{% url 'home' %}#perfil">Perfil</a>
+                <a href="{% url 'home' %}#educacion">Educación</a>
+                <a href="{% url 'home' %}#experiencia">Experiencia</a>
+                <a href="{% url 'home' %}#contacto">Contacto</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'curriculum:entry_list' %}">CRUD</a>
+                    <a class="btn-logout" href="{% url 'logout' %}">Cerrar sesión</a>
+                {% endif %}
+            </nav>
+        </header>
+
+        {% if messages %}
+            <section class="messages">
+                {% for message in messages %}
+                    <p class="message message-{{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            </section>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
