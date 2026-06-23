@@ -1,6 +1,6 @@
 """Views for the curriculum dashboard and CRUD."""
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -25,14 +25,23 @@ def login_view(request):
 
     form = LoginForm(request.POST)
     if form.is_valid():
-        email = form.cleaned_data["email"]
+        username = form.cleaned_data["username"]
         password = form.cleaned_data["password"]
-        user = authenticate(request, username=email, password=password)
+        user = authenticate(request, username=username, password=password)
+        if user is None:
+            User = get_user_model()
+            try:
+                account = User.objects.get(email__iexact=username)
+            except User.DoesNotExist:
+                account = None
+            if account is not None:
+                user = authenticate(request, username=account.username, password=password)
+
         if user is not None:
             login(request, user)
-            messages.success(request, "Sesion iniciada correctamente.")
+            messages.success(request, "Sesión iniciada correctamente.")
             return redirect("home")
-        form.add_error(None, "Email o contraseña incorrectos.")
+        form.add_error(None, "Usuario o contraseña incorrectos.")
 
     context = build_dashboard_context()
     context["show_login"] = True

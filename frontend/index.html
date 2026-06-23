@@ -18,9 +18,9 @@
                         <div class="form-errors">{{ login_form.non_field_errors }}</div>
                     {% endif %}
 
-                    <label for="{{ login_form.email.id_for_label }}">Email</label>
-                    {{ login_form.email }}
-                    {% for error in login_form.email.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
+                    <label for="{{ login_form.username.id_for_label }}">Usuario o email</label>
+                    {{ login_form.username }}
+                    {% for error in login_form.username.errors %}<p class="field-error">{{ error }}</p>{% endfor %}
 
                     <label for="{{ login_form.password.id_for_label }}">Contraseña</label>
                     {{ login_form.password }}

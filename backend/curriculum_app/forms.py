@@ -5,9 +5,9 @@ from .models import CurriculumEntry
 
 
 class LoginForm(forms.Form):
-    email = forms.EmailField(
-        label="Email",
-        widget=forms.EmailInput(attrs={"placeholder": "usuario@ejemplo.com", "class": "input-field"}),
+    username = forms.CharField(
+        label="Usuario o email",
+        widget=forms.TextInput(attrs={"placeholder": "usuario o email", "class": "input-field"}),
     )
     password = forms.CharField(
         label="Contraseña",

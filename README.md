@@ -30,13 +30,13 @@ pip install -r requirements.txt
 2. Aplica migraciones:
 
 ```bash
-python backend/manage.py migrate
+python manage.py migrate
 ```
 
 3. Ejecuta el servidor:
 
 ```bash
-python backend/manage.py runserver
+python manage.py runserver
 ```
 
 ## Verificación de MySQL/XAMPP
